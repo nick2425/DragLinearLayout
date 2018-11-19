@@ -128,8 +128,11 @@ public class DragLinearLayout extends LinearLayout {
         }
 
         public void onDragStart() {
-            view.setVisibility(View.INVISIBLE);
-            this.dragging = true;
+
+            if (view != null) {
+                view.setVisibility(View.INVISIBLE);
+                this.dragging = true;
+            }
         }
 
         public void setTotalOffset(int offset) {
@@ -138,7 +141,9 @@ public class DragLinearLayout extends LinearLayout {
         }
 
         public void updateTargetTop() {
-            targetTopOffset = startTop - view.getTop() + totalDragOffset;
+            if(view != null) {
+                targetTopOffset = startTop - view.getTop() + totalDragOffset;
+            }
         }
 
         public void onDragStop() {
@@ -353,13 +358,23 @@ public class DragLinearLayout extends LinearLayout {
      * {@link com.jmedeisis.draglinearlayout.DragLinearLayout.DragItem#detecting}.
      */
     private void startDetectingDrag(View child) {
-        if (draggedItem.detecting)
+
+        if (draggedItem.detecting) {
+
             return; // existing drag in process, only one at a time is allowed
+
+        }
 
         final int position = indexOfChild(child);
 
         // complete any existing animations, both for the newly selected child and the previous dragged one
-        draggableChildren.get(position).endExistingAnimation();
+        DraggableChild draggableChild = draggableChildren.get(position);
+
+        if (draggableChild == null) {
+            return;
+        }
+
+        draggableChild.endExistingAnimation();
 
         draggedItem.startDetectingOnPossibleDrag(child, position);
         if (containerScrollView != null) {
@@ -754,5 +769,59 @@ public class DragLinearLayout extends LinearLayout {
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
         return bitmap;
+    }
+
+    /**
+     * Move a view programmatically
+     */
+    public void move(@NonNull View child, boolean downList) {
+
+        if (child == null) {
+
+            return;
+
+        }
+
+        startDetectingDrag(child);
+
+        startDrag();
+
+        int offset;
+        int position = indexOfChild(child);
+        int viewToJump;
+        int additionalOffset = 0;
+
+        if (downList) {
+
+            viewToJump = position - 1;
+            additionalOffset = child.getHeight();
+
+        } else {
+
+            viewToJump = position + 1;
+
+        }
+
+        if (viewToJump < 0) {
+
+            return;
+
+        }
+
+        View nextChild = getChildAt(viewToJump);
+
+        if (nextChild == null) {
+
+            return;
+
+        }
+
+        offset = nextChild.getHeight() + additionalOffset;
+
+        onDrag(offset);
+
+        onTouchEnd();
+        onDragStop();
+
     }
 }

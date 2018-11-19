@@ -32,13 +32,13 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        noteContainer = (DragLinearLayout) findViewById(R.id.noteContainer);
+        noteContainer = findViewById(R.id.noteContainer);
         String[] defaultNotes = getResources().getStringArray(R.array.notes);
         firstNoteIndex = noteContainer.getChildCount();
         for(int i = 0; i < defaultNotes.length; i++){
             addExistingNote(i, defaultNotes[i]);
         }
-        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        scrollView = findViewById(R.id.scrollView);
         noteContainer.setContainerScrollView(scrollView);
         noteContainer.setOnViewSwapListener(new DragLinearLayout.OnViewSwapListener() {
             @Override
@@ -63,7 +63,7 @@ public class NoteActivity extends AppCompatActivity {
 
         setNoteIndex(note, index);
 
-        final EditText noteText = (EditText) note.findViewById(R.id.noteText);
+        final EditText noteText = note.findViewById(R.id.noteText);
         noteText.setText(text);
         noteText.addTextChangedListener(new NoteTextWatcher(note));
         noteText.setOnFocusChangeListener(new NoteFocusChangeListener(note));
@@ -77,7 +77,7 @@ public class NoteActivity extends AppCompatActivity {
 
         setNoteIndex(note, index);
 
-        final EditText noteText = (EditText) note.findViewById(R.id.noteText);
+        final EditText noteText = note.findViewById(R.id.noteText);
         noteText.addTextChangedListener(new NoteTextWatcher(note));
         noteText.setOnFocusChangeListener(new NoteFocusChangeListener(note));
 

@@ -1,55 +1,92 @@
-<com.jmedeisis.draglinearlayout.DragLinearLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/default_vertical_margin"
-    tools:context=".DemoActivity" >
-
-    <TextView
-        android:text="@string/list_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ListHeader" />
-
-    <TextView
-        android:text="@string/list_item_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/SpaciousListItem" />
-
-    <TextView
-        android:text="@string/list_item_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/SpaciousListItem" />
-
-    <TextView
-        android:text="@string/list_item_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/SpaciousListItem" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/cherry_blossom"
-        android:contentDescription="@string/demo_image_content_description" />
-
-    <TextView
-        android:text="@string/list_item_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/SpaciousListItem" />
+    android:orientation="vertical">
 
     <Button
-        android:id="@+id/noteDemoButton"
+        android:id="@+id/upIndexButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/action_view_note_demo"
-        style="@style/MinimalistButton"/>
+        android:text="Increase Index"/>
 
+    <Button
+        android:id="@+id/downIndexButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Decrease Index"/>
 
-</com.jmedeisis.draglinearlayout.DragLinearLayout>
+    <TextView
+        android:id="@+id/indexCountTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"/>
+
+    <Button
+        android:id="@+id/moveItemUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Move The Top Item Up"/>
+
+    <Button
+        android:id="@+id/moveItemDownButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Move The Top Item Down"/>
+
+    <com.jmedeisis.draglinearlayout.DragLinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/default_vertical_margin"
+        tools:context=".DemoActivity" >
+
+        <TextView
+            android:text="@string/list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ListHeader" />
+
+        <TextView
+            android:text="@string/list_item_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SpaciousListItem" />
+
+        <TextView
+            android:text="@string/list_item_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SpaciousListItem" />
+
+        <TextView
+            android:text="@string/list_item_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SpaciousListItem" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cherry_blossom"
+            android:contentDescription="@string/demo_image_content_description" />
+
+        <TextView
+            android:text="@string/list_item_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SpaciousListItem" />
+
+        <Button
+            android:id="@+id/noteDemoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_view_note_demo"
+            style="@style/MinimalistButton"/>
+
+    </com.jmedeisis.draglinearlayout.DragLinearLayout>
+
+</LinearLayout>
