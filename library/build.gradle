@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 2
-        versionName "1.1.2"
+        versionCode 3
+        versionName "1.1.3"
     }
     buildTypes {
         release {
@@ -37,7 +37,7 @@ publish {
     userOrg = 'nick2425'
     groupId = 'com.sureware'
     artifactId = 'draglinearlayout'
-    publishVersion = "1.1.1"
+    publishVersion = "1.1.3"
     licences = ['MIT']
     desc = "Android LinearLayout with drag and drop to reorder."
     website = 'https://github.com/nick2425/DragLinearLayout'

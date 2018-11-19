@@ -793,12 +793,12 @@ public class DragLinearLayout extends LinearLayout {
 
         if (downList) {
 
-            viewToJump = position - 1;
+            viewToJump = position + 1;
             additionalOffset = child.getHeight();
 
         } else {
 
-            viewToJump = position + 1;
+            viewToJump = position - 1;
 
         }
 
@@ -816,7 +816,15 @@ public class DragLinearLayout extends LinearLayout {
 
         }
 
-        offset = nextChild.getHeight() + additionalOffset;
+        if (downList) {
+
+            offset = nextChild.getHeight() + additionalOffset;
+
+        } else {
+
+            offset = - (nextChild.getHeight() + additionalOffset);
+
+        }
 
         onDrag(offset);
 
